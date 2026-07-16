@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A mobile-first Chemistry practice loop for JEE Main learners.">
+  <meta name="theme-color" content="#0b132b">
+  <title>Main — Chemistry, made clear</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Main home"><span aria-hidden="true">M</span>Main</a>
+    <span class="pilot-chip">V1 pilot</span>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">CHEMISTRY · JEE MAIN</p>
+        <h1>Turn “I don’t get it” into <em>“now I do.”</em></h1>
+        <p class="lede">One focused lesson. Five quick questions. Worked explanations that help you understand every miss.</p>
+        <a class="button button-primary" href="#lesson">Start a 5-minute session <span aria-hidden="true">→</span></a>
+        <p class="microcopy">No sign-up · Progress stays on this device</p>
+      </div>
+      <div class="orbital-card" aria-label="Decorative atom illustration">
+        <div class="orbit orbit-one"><span></span></div>
+        <div class="orbit orbit-two"><span></span></div>
+        <div class="orbit orbit-three"><span></span></div>
+        <div class="nucleus">Cl</div>
+        <p><strong>17</strong> Chlorine</p>
+      </div>
+    </section>
+
+    <section class="value-strip" aria-label="What the pilot offers">
+      <div><strong>01</strong><span>Study a focused concept</span></div>
+      <div><strong>02</strong><span>Practise without pressure</span></div>
+      <div><strong>03</strong><span>Learn from every answer</span></div>
+    </section>
+
+    <section class="lesson shell" id="lesson">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PILOT TOPIC · PERIODICITY</p>
+          <h2>Why atomic radius changes across a period</h2>
+        </div>
+        <span class="review-badge">Demo content · SME review pending</span>
+      </div>
+
+      <div class="lesson-grid">
+        <article class="concept-card">
+          <p class="card-kicker">THE CORE IDEA</p>
+          <h3>More pull, smaller radius</h3>
+          <p>Across a period, electrons enter the same principal shell while nuclear charge increases. The stronger effective attraction generally pulls the electron cloud closer.</p>
+          <div class="trend" aria-label="Illustration showing radius generally decreases from sodium to chlorine">
+            <span class="atom atom-xl">Na</span><span aria-hidden="true">→</span>
+            <span class="atom atom-lg">Mg</span><span aria-hidden="true">→</span>
+            <span class="atom atom-md">Al</span><span aria-hidden="true">→</span>
+            <span class="atom atom-sm">Cl</span>
+          </div>
+          <p class="takeaway"><strong>Remember:</strong> across a period, increasing effective nuclear charge generally means decreasing atomic radius.</p>
+        </article>
+
+        <aside class="trust-card">
+          <p class="card-kicker">CONTENT STATUS</p>
+          <dl>
+            <div><dt>Revision</dt><dd>demo-v1</dd></div>
+            <div><dt>Review status</dt><dd>Not yet SME approved</dd></div>
+            <div><dt>Reference</dt><dd><a href="https://jeemain.nta.nic.in/" target="_blank" rel="noreferrer">Official JEE Main portal</a></dd></div>
+          </dl>
+          <p>This prototype demonstrates the learning experience. It must not be treated as authoritative study material until a Chemistry SME approves it.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="quiz shell" id="practice" aria-labelledby="quiz-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CHECK YOUR UNDERSTANDING</p>
+          <h2 id="quiz-title">One quick question</h2>
+        </div>
+        <span class="counter">1 / 1</span>
+      </div>
+
+      <form id="quiz-form" class="question-card">
+        <fieldset>
+          <legend>Which statement best explains the general decrease in atomic radius from left to right across a period?</legend>
+          <label class="option"><input type="radio" name="answer" value="a"><span>Electrons are added to new principal shells</span></label>
+          <label class="option"><input type="radio" name="answer" value="b"><span>Effective nuclear attraction increases while electrons enter the same principal shell</span></label>
+          <label class="option"><input type="radio" name="answer" value="c"><span>The number of protons decreases</span></label>
+          <label class="option"><input type="radio" name="answer" value="d"><span>Shielding increases enough to cancel nuclear charge completely</span></label>
+        </fieldset>
+        <p class="form-error" id="form-error" role="alert" hidden>Choose an answer before checking.</p>
+        <button class="button button-primary" type="submit">Check my answer</button>
+      </form>
+
+      <section class="result-card" id="result" aria-live="polite" hidden>
+        <p class="result-label" id="result-label"></p>
+        <h3 id="result-title"></h3>
+        <p id="result-copy"></p>
+        <div class="progress-row">
+          <span>Session complete</span>
+          <progress value="100" max="100">100%</progress>
+          <strong>100%</strong>
+        </div>
+        <button class="button button-secondary" id="reset-progress" type="button">Reset progress</button>
+      </section>
+    </section>
+
+    <section class="closing shell">
+      <p class="eyebrow">SMALL SESSIONS. REAL CLARITY.</p>
+      <h2>Study less randomly.<br>Understand more deeply.</h2>
+      <a class="button button-light" href="#lesson">Restart the pilot <span aria-hidden="true">↑</span></a>
+    </section>
+  </main>
+
+  <footer>
+    <div><a class="brand brand-footer" href="#top"><span aria-hidden="true">M</span>Main</a><p>A product prototype for Chemistry JEE learners.</p></div>
+    <div><p><strong>Content concern?</strong></p><a href="mailto:content@example.com?subject=Main%20demo-v1%20content%20concern">Report demo revision</a></div>
+  </footer>
+</body>
+</html>
