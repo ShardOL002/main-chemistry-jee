@@ -77,7 +77,9 @@ form.addEventListener('submit', (event) => {
     error.focus();
     return;
   }
+  if (window.MainObservability) window.MainObservability.recordStep('attempt_submitted');
   showResult(answer);
+  if (window.MainObservability) window.MainObservability.recordStep('explanation_viewed');
 });
 
 resetButton.addEventListener('click', () => {

@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A mobile-first Chemistry practice loop for JEE Main learners.">
   <meta name="theme-color" content="#0b132b">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self' mailto:">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self' mailto:">
   <title>Main — Chemistry, made clear</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="observability-core.js" defer></script>
+  <script src="observability.js" defer></script>
   <script src="app-core.js" defer></script>
   <script src="app.js" defer></script>
 </head>
@@ -44,7 +46,7 @@
       </div>
       <article class="topic-card">
         <div><p class="card-kicker">PHYSICAL CHEMISTRY · DEMO</p><h3>Periodicity</h3><p>Explore one simplified explanation of an across-period trend, then attempt one question.</p></div>
-        <a class="button button-primary" href="#lesson">Open lesson <span aria-hidden="true">→</span></a>
+        <a class="button button-primary" href="#lesson" data-funnel-step="topic_opened">Open lesson <span aria-hidden="true">→</span></a>
       </article>
       <p id="storage-notice" class="notice" role="status" hidden>Device storage is unavailable. You can still complete the session, but progress will last only in this tab.</p>
     </section>
@@ -70,6 +72,7 @@
             <span class="atom atom-sm">Cl</span>
           </div>
           <p class="takeaway"><strong>Remember:</strong> across a period, increasing effective nuclear charge generally means decreasing atomic radius.</p>
+          <a class="button button-secondary lesson-action" href="#practice" data-funnel-step="lesson_viewed">Try the question <span aria-hidden="true">→</span></a>
         </article>
 
         <aside class="trust-card">
@@ -130,6 +133,7 @@
 
   <footer>
     <div><a class="brand brand-footer" href="#top"><span aria-hidden="true">M</span>Main</a><p>A product prototype for Chemistry JEE learners.</p></div>
+    <div><p><strong>Privacy</strong></p><p>No analytics leave this device. This tab keeps only completed funnel steps and a redacted error count.</p></div>
     <div><p><strong>Content concern?</strong></p><a href="mailto:content@example.com?subject=Main%20periodicity-lesson-demo-r1%20content%20concern">Report demo revision</a></div>
   </footer>
 </body>

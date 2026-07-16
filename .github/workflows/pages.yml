@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      release_ref:
+        description: Git commit or tag to deploy (use a previous green SHA to roll back)
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -18,16 +23,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout selected release
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref || github.sha }}
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Test learning-state core
-        run: node --test app-core.test.js
+      - name: Test learning path, accessibility, performance, and privacy controls
+        run: node --test *.test.js
       - name: Check JavaScript syntax
-        run: node --check app-core.js && node --check app.js
+        run: node --check app-core.js && node --check app.js && node --check observability-core.js && node --check observability.js
 
   deploy:
     needs: test
@@ -36,8 +43,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout selected release
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref || github.sha }}
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
