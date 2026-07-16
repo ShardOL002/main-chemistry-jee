@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A mobile-first Chemistry practice loop for JEE Main learners.">
   <meta name="theme-color" content="#0b132b">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self' mailto:">
   <title>Main — Chemistry, made clear</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="app-core.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Main home"><span aria-hidden="true">M</span>Main</a>
-    <span class="pilot-chip">V1 pilot</span>
+    <nav aria-label="Primary navigation"><a href="#topics">Topics</a><a href="#lesson">Lesson</a><a href="#practice">Practice</a></nav>
+    <span class="pilot-chip">V1 demo</span>
   </header>
 
   <main id="main">
@@ -21,8 +24,8 @@
       <div class="hero-copy">
         <p class="eyebrow">CHEMISTRY · JEE MAIN</p>
         <h1>Turn “I don’t get it” into <em>“now I do.”</em></h1>
-        <p class="lede">One focused lesson. Five quick questions. Worked explanations that help you understand every miss.</p>
-        <a class="button button-primary" href="#lesson">Start a 5-minute session <span aria-hidden="true">→</span></a>
+        <p class="lede">One focused demo lesson. One quick question. A worked explanation that helps you understand every option.</p>
+        <a class="button button-primary" href="#topics">Browse pilot topics <span aria-hidden="true">→</span></a>
         <p class="microcopy">No sign-up · Progress stays on this device</p>
       </div>
       <div class="orbital-card" aria-label="Decorative atom illustration">
@@ -34,10 +37,16 @@
       </div>
     </section>
 
-    <section class="value-strip" aria-label="What the pilot offers">
-      <div><strong>01</strong><span>Study a focused concept</span></div>
-      <div><strong>02</strong><span>Practise without pressure</span></div>
-      <div><strong>03</strong><span>Learn from every answer</span></div>
+    <section class="topics shell" id="topics" aria-labelledby="topics-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">TOPIC DISCOVERY</p><h2 id="topics-title">Choose a topic</h2></div>
+        <p id="progress-status" class="progress-status">Not started · progress stays on this device</p>
+      </div>
+      <article class="topic-card">
+        <div><p class="card-kicker">PHYSICAL CHEMISTRY · DEMO</p><h3>Periodicity</h3><p>Explore one simplified explanation of an across-period trend, then attempt one question.</p></div>
+        <a class="button button-primary" href="#lesson">Open lesson <span aria-hidden="true">→</span></a>
+      </article>
+      <p id="storage-notice" class="notice" role="status" hidden>Device storage is unavailable. You can still complete the session, but progress will last only in this tab.</p>
     </section>
 
     <section class="lesson shell" id="lesson">
@@ -66,9 +75,10 @@
         <aside class="trust-card">
           <p class="card-kicker">CONTENT STATUS</p>
           <dl>
-            <div><dt>Revision</dt><dd>demo-v1</dd></div>
-            <div><dt>Review status</dt><dd>Not yet SME approved</dd></div>
-            <div><dt>Reference</dt><dd><a href="https://jeemain.nta.nic.in/" target="_blank" rel="noreferrer">Official JEE Main portal</a></dd></div>
+            <div><dt>Revision</dt><dd>periodicity-lesson-demo-r1</dd></div>
+            <div><dt>Review status</dt><dd>Draft · not SME approved</dd></div>
+            <div><dt>Provenance</dt><dd>Engineering-authored placeholder for interaction testing</dd></div>
+            <div><dt>Syllabus context</dt><dd><a href="https://jeemain.nta.nic.in/" target="_blank" rel="noopener noreferrer">Official JEE Main portal</a> (context only; not claim evidence)</dd></div>
           </dl>
           <p>This prototype demonstrates the learning experience. It must not be treated as authoritative study material until a Chemistry SME approves it.</p>
         </aside>
@@ -92,14 +102,16 @@
           <label class="option"><input type="radio" name="answer" value="c"><span>The number of protons decreases</span></label>
           <label class="option"><input type="radio" name="answer" value="d"><span>Shielding increases enough to cancel nuclear charge completely</span></label>
         </fieldset>
-        <p class="form-error" id="form-error" role="alert" hidden>Choose an answer before checking.</p>
+        <p class="form-error" id="form-error" role="alert" tabindex="-1" hidden>Choose an answer before checking.</p>
         <button class="button button-primary" type="submit">Check my answer</button>
       </form>
 
-      <section class="result-card" id="result" aria-live="polite" hidden>
+      <section class="result-card" id="result" tabindex="-1" aria-live="polite" hidden>
         <p class="result-label" id="result-label"></p>
         <h3 id="result-title"></h3>
         <p id="result-copy"></p>
+        <p id="option-rationale" class="rationale"></p>
+        <p class="content-caveat"><strong>Content boundary:</strong> this explanation is draft demo copy pending qualified Chemistry JEE review. Do not treat it as authoritative study guidance.</p>
         <div class="progress-row">
           <span>Session complete</span>
           <progress value="100" max="100">100%</progress>
@@ -118,7 +130,7 @@
 
   <footer>
     <div><a class="brand brand-footer" href="#top"><span aria-hidden="true">M</span>Main</a><p>A product prototype for Chemistry JEE learners.</p></div>
-    <div><p><strong>Content concern?</strong></p><a href="mailto:content@example.com?subject=Main%20demo-v1%20content%20concern">Report demo revision</a></div>
+    <div><p><strong>Content concern?</strong></p><a href="mailto:content@example.com?subject=Main%20periodicity-lesson-demo-r1%20content%20concern">Report demo revision</a></div>
   </footer>
 </body>
 </html>

@@ -1,29 +1,77 @@
+'use strict';
+
 const form = document.querySelector('#quiz-form');
 const result = document.querySelector('#result');
 const error = document.querySelector('#form-error');
-const label = document.querySelector('#result-label');
-const title = document.querySelector('#result-title');
-const copy = document.querySelector('#result-copy');
+const resultLabel = document.querySelector('#result-label');
+const resultTitle = document.querySelector('#result-title');
+const resultCopy = document.querySelector('#result-copy');
+const rationale = document.querySelector('#option-rationale');
 const resetButton = document.querySelector('#reset-progress');
-const STORAGE_KEY = 'main-demo-v1-progress';
+const progressStatus = document.querySelector('#progress-status');
+const storageNotice = document.querySelector('#storage-notice');
+const learning = window.MainLearning;
+let memoryState = null;
+let storageAvailable = true;
+
+const rationales = {
+  a: 'This does not fit the across-period pattern: the added electrons occupy the same principal shell in this simplified model.',
+  b: 'This matches the demo explanation: increasing effective nuclear attraction acts on electrons in the same principal shell.',
+  c: 'Atomic number, and therefore proton number, increases from left to right rather than decreasing.',
+  d: 'Shielding does not completely cancel the increase in nuclear charge in this simplified explanation.'
+};
+
+function readState() {
+  if (!storageAvailable) return memoryState;
+  try {
+    const raw = localStorage.getItem(learning.STORAGE_KEY);
+    const parsed = learning.parseState(raw);
+    if (raw && !parsed) localStorage.removeItem(learning.STORAGE_KEY);
+    return parsed;
+  } catch {
+    storageAvailable = false;
+    storageNotice.hidden = false;
+    return memoryState;
+  }
+}
+
+function writeState(state) {
+  memoryState = state;
+  if (!storageAvailable) return;
+  try {
+    localStorage.setItem(learning.STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    storageAvailable = false;
+    storageNotice.hidden = false;
+  }
+}
+
+function clearState() {
+  memoryState = null;
+  if (!storageAvailable) return;
+  try { localStorage.removeItem(learning.STORAGE_KEY); } catch {
+    storageAvailable = false;
+    storageNotice.hidden = false;
+  }
+}
 
 function showResult(answer, persist = true) {
-  const correct = answer === 'b';
-  label.textContent = correct ? 'CORRECT' : 'KEEP GOING';
-  title.textContent = correct ? 'You connected the key ideas.' : 'The key is effective nuclear attraction.';
-  copy.textContent = correct
-    ? 'Electrons are added to the same principal shell while nuclear charge rises, so the electron cloud is generally pulled closer.'
-    : 'Across a period, electrons enter the same principal shell while nuclear charge increases. The stronger effective attraction generally reduces atomic radius.';
+  const correct = learning.scoreAnswer(answer) === 1;
+  resultLabel.textContent = correct ? 'CORRECT' : 'REVISIT THIS IDEA';
+  resultTitle.textContent = correct ? 'You connected the key ideas.' : 'The key is effective nuclear attraction.';
+  resultCopy.textContent = 'Worked explanation: in this simplified across-period model, electrons enter the same principal shell while nuclear charge rises. The resulting increase in effective attraction generally pulls the electron cloud closer.';
+  rationale.textContent = `Why your option ${answer.toUpperCase()} ${correct ? 'works' : 'does not work'}: ${rationales[answer]}`;
   result.hidden = false;
   error.hidden = true;
-  if (persist) localStorage.setItem(STORAGE_KEY, JSON.stringify({ answer, completed: true }));
+  progressStatus.textContent = `Completed · ${correct ? '1 of 1 correct' : '0 of 1 correct'} · saved ${storageAvailable ? 'on this device' : 'for this tab only'}`;
+  if (persist) writeState(learning.createCompletedState(answer));
+  result.focus({ preventScroll: true });
   result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const data = new FormData(form);
-  const answer = data.get('answer');
+  const answer = new FormData(form).get('answer');
   if (!answer) {
     error.hidden = false;
     error.focus();
@@ -33,19 +81,17 @@ form.addEventListener('submit', (event) => {
 });
 
 resetButton.addEventListener('click', () => {
-  localStorage.removeItem(STORAGE_KEY);
+  clearState();
   form.reset();
   result.hidden = true;
   error.hidden = true;
+  progressStatus.textContent = 'Not started · progress stays on this device';
   form.querySelector('input').focus();
 });
 
-try {
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  if (saved?.completed && ['a', 'b', 'c', 'd'].includes(saved.answer)) {
-    form.elements.answer.value = saved.answer;
-    showResult(saved.answer, false);
-  }
-} catch {
-  localStorage.removeItem(STORAGE_KEY);
+const saved = readState();
+if (saved) {
+  const answer = saved.progress.selectedOptionId;
+  form.elements.answer.value = answer;
+  showResult(answer, false);
 }
