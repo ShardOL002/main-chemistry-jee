@@ -24,7 +24,7 @@ test('critical path is linked and instrumented from topic to saved progress', ()
   assert.match(html, /<form id="quiz-form"/);
   assert.match(html, /<progress value="100" max="100">/);
   for (const script of ['app-core.js', 'observability-core.js', 'observability.js', 'app.js']) {
-    assert.match(html, new RegExp(`<script src="${script.replace('.', '\\.')}"></script>`), `missing ${script} script`);
+    assert.match(html, new RegExp(`<script src="${script.replace('.', '\\.')}" defer></script>`), `missing deferred ${script} script`);
   }
   assert.match(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), /createCompletedState\(answer\)/);
 });
