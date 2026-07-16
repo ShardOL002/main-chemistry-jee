@@ -32,6 +32,7 @@ Requires Node.js 20 or newer:
 node --test *.test.js
 node --check app-core.js && node --check app.js
 node --check observability-core.js && node --check observability.js
+node --check pilot-analysis.js
 ```
 
 The tests cover answer scoring plus valid, corrupt, stale, and tampered progress records. Chemistry correctness is deliberately **not** asserted by engineering tests; the demo answer key and explanation require qualified Chemistry JEE review before authoritative use.
@@ -58,6 +59,7 @@ This Pages environment is a pilot staging target, not an authoritative curriculu
 - `app-core.js` — scoring and revision-bound state validation
 - `app.js` — accessible practice interaction and storage fallback
 - `observability*.js` — privacy-minimized, tab-local funnel/error counters and tests
+- `pilot-analysis.js` — strict local validator and aggregate generator for de-identified pilot worksheets
 - `*.test.js` — dependency-free core and quality checks
 - `docs/QUALITY.md` — accessibility, performance, and privacy baseline
 - `docs/RELEASE.md` — staging, release, backup, and rollback controls

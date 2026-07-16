@@ -1,6 +1,6 @@
 # Facilitated learner pilot runbook
 
-Status: ready for a CEO-authorized, consented pilot; no participant data is required by the product.
+Status: CEO authorization and the consent/retention procedure were confirmed on 2026-07-16; no participant data is required by the product. Learner sessions remain to be facilitated.
 
 ## Scope and acceptance criteria
 
@@ -88,6 +88,14 @@ Allowed `elapsed_bucket`: `under_3m`, `3_to_5m`, `over_5m`, `not_completed`. All
 After each session, copy the allowed fields, close the private tab, and verify the tab-local record is gone. Keep worksheets in the approved company workspace only.
 
 ## Analysis procedure
+
+Start from `docs/PILOT-WORKSHEET.csv`; do not add columns. Validate and aggregate it locally with:
+
+```bash
+node pilot-analysis.js path/to/de-identified-worksheet.csv
+```
+
+The command rejects unexpected columns, invalid categories, duplicate row codes, counts outside 0–99, and inconsistent completion states. A facilitator must still manually redact the three free-text fields because automated checks cannot reliably identify personal details or Chemistry claims.
 
 1. Validate that every row uses allowed values and contains no direct identifier.
 2. Report denominator and missingness for every measure.

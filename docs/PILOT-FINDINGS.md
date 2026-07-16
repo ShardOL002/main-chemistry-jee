@@ -10,7 +10,7 @@ Participant sessions completed: **0**
 
 **Not observed (learner):** No authorized participant sessions or learner feedback were available for this report. Completion, comprehension, usability, accessibility-in-use, content trust, and real-device performance therefore have no learner evidence. Zero sessions must not be reported as zero failures or 100% completion.
 
-**Decision:** Pilot readiness is complete; learner-dependent analysis remains blocked on CEO recruitment/authorization and consent-policy confirmation. Do not make an evidence-led product iteration from this readiness baseline alone.
+**Decision:** Pilot readiness is complete. CEO authorization and the consent/retention procedure were confirmed on 2026-07-16; learner-dependent analysis now awaits the 3–5 facilitated session worksheets. Do not make an evidence-led product iteration from this readiness baseline alone.
 
 ## Evidence table
 
@@ -41,7 +41,7 @@ Denominator: 0 sessions. All rates and medians: **not calculable**.
 
 ## Risks and next evidence
 
-1. **Participant availability and consent — owner: CEO.** Authorize/recruit 3–5 participants and confirm consent language/retention policy before any session.
+1. **Session evidence — owner: CEO/facilitator.** Run the 3–5 authorized sessions with the approved procedure and return only the de-identified worksheet fields; authorization and consent/retention procedure were confirmed on 2026-07-16.
 2. **Chemistry authority — owner: qualified Chemistry JEE SME.** Review the exact lesson/question/explanation revision before it is treated as study guidance. Pilot trust feedback is not a correctness review.
 3. **Small-sample bias.** Report individual counts and denominator; treat themes as directional, not population estimates.
 4. **Facilitator bias.** Use the neutral script and record every prompt/assistance instance.
