@@ -26,9 +26,9 @@ The site has no build step, fonts, images, third-party JavaScript, API calls, or
 
 Observability is first-party and device-only:
 
-- `sessionStorage` holds only schema version, ordered completed funnel-step names, and an error count capped at 99.
-- It stores no answer, error message, stack, URL, timestamp, identity, fingerprint, or persistent session ID.
+- `sessionStorage` holds only schema version, ordered completed funnel-step names, validation/client-error counts capped at 99, and a coarse load bucket.
+- It stores no answer, correctness, exact duration, error message, stack, URL, timestamp, identity, fingerprint, or persistent session ID.
 - CSP blocks outbound connections (`connect-src 'none'`). Nothing is transmitted.
 - Inspect during a consenting pilot with `MainObservability.snapshot()` in the browser console. Closing the tab clears the session data.
 
-This is sufficient to debug a facilitated MVP pilot without collecting student data. Aggregated remote monitoring is deliberately deferred until there is evidence it is needed and an approved privacy/vendor design.
+This is sufficient to debug a facilitated MVP pilot without collecting student data. The event dictionary, consent boundary, facilitator workflow, and aggregation rules are in [`PILOT.md`](PILOT.md). Aggregated remote monitoring is deliberately deferred until there is evidence it is needed and an approved privacy/vendor design.

@@ -75,6 +75,7 @@ form.addEventListener('submit', (event) => {
   if (!answer) {
     error.hidden = false;
     error.focus();
+    if (window.MainObservability) window.MainObservability.recordValidationError();
     return;
   }
   if (window.MainObservability) window.MainObservability.recordStep('attempt_submitted');

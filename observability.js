@@ -25,11 +25,22 @@
     persist();
   }
 
+  function recordValidationError() {
+    snapshot = core.recordValidationError(snapshot);
+    persist();
+  }
+
   function recordError() {
     snapshot = core.recordError(snapshot);
     persist();
     console.warn('Main recorded a redacted client error. No error text or personal data was retained.');
   }
+
+  window.addEventListener('load', () => {
+    const navigation = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    snapshot = core.setLoadDuration(snapshot, navigation ? navigation.duration : NaN);
+    persist();
+  }, { once: true });
 
   document.addEventListener('click', (event) => {
     const target = event.target.closest('[data-funnel-step]');
@@ -40,6 +51,7 @@
 
   window.MainObservability = {
     recordStep,
+    recordValidationError,
     snapshot: function () { return JSON.parse(JSON.stringify(snapshot)); }
   };
 })();

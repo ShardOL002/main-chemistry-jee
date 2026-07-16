@@ -40,7 +40,7 @@ The tests cover answer scoring plus valid, corrupt, stale, and tampered progress
 
 Completed progress is stored under `main:v1:learner-state` in browser `localStorage`, bound to the exact demo release and content revisions. Invalid or stale data is discarded. If storage is unavailable, the learning loop continues in memory for the current tab and displays a notice. Reset removes the progress key.
 
-For a facilitated pilot, `sessionStorage` keeps only ordered funnel-step names and a bounded redacted error count. It records no answers, identity, timestamps, error text, or stacks; it is cleared with the tab and never transmitted. See [`docs/QUALITY.md`](docs/QUALITY.md).
+For a facilitated pilot, `sessionStorage` keeps only ordered funnel-step names, bounded validation/client-error counts, and a coarse load-time bucket. It records no answers, identity, timestamps, exact durations, error text, or stacks; it is cleared with the tab and never transmitted. See [`docs/PILOT.md`](docs/PILOT.md) for the script, worksheet schema, support runbook, and analysis method, and [`docs/PILOT-FINDINGS.md`](docs/PILOT-FINDINGS.md) for the zero-participant readiness baseline.
 
 ## Deploy staging to GitHub Pages
 
@@ -61,6 +61,8 @@ This Pages environment is a pilot staging target, not an authoritative curriculu
 - `*.test.js` — dependency-free core and quality checks
 - `docs/QUALITY.md` — accessibility, performance, and privacy baseline
 - `docs/RELEASE.md` — staging, release, backup, and rollback controls
+- `docs/PILOT.md` — privacy boundary, event dictionary, script, observation template, support, and analysis
+- `docs/PILOT-FINDINGS.md` — evidence/assumption-separated pilot findings baseline
 - `.github/workflows/pages.yml` — checks, selected-ref deployment, and rollback
 
 ## License
